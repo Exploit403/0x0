@@ -4,82 +4,73 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lunex Homepage</title>
-
 <style>
 body {
     background:#121212;
     color:#e0e0e0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     margin:0;
 }
-
 header, main, footer {
-    display:none; /* Hide site content until password is correct */
+    display:block; /* Initially visible; auth.js will hide until login */
 }
-
-/* Login page styling */
-#login {
-    height:100vh;
+header {
+    background:#1e1e1e;
+    padding:20px;
+    text-align:center;
+    border-bottom:2px solid #00ff99;
+}
+h1 { color:#00ff99; margin:0; }
+main {
+    padding:40px;
     display:flex;
     justify-content:center;
-    align-items:center;
 }
-.login-box {
+.card-container {
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.card {
     background:#1e1e1e;
-    padding:30px;
-    border-radius:10px;
     border:1px solid #333;
+    padding:20px;
+    width:200px;
+    border-radius:8px;
+    text-decoration:none;
+    color:inherit;
     text-align:center;
 }
-.login-box input {
+.card:hover { border-color:#00ff99; }
+footer {
+    background:#1e1e1e;
+    text-align:center;
     padding:10px;
-    width:200px;
-    border-radius:5px;
-    border:none;
-}
-.login-box button {
-    margin-top:10px;
-    padding:10px;
-    width:100%;
-    background:#00ff99;
-    border:none;
-    cursor:pointer;
-}
-#error-message {
-    color:#ff5555;
-    margin-top:10px;
-    font-size:0.9em;
+    border-top:1px solid #333;
 }
 </style>
 </head>
 <body>
 
-<!-- Login form -->
-<div id="login">
-    <div class="login-box">
-        <h2>Lunex Group Portal Login</h2>
-        <input type="password" id="password-input" placeholder="Enter Password">
-        <button onclick="checkPassword()">Login</button>
-        <div id="error-message"></div>
-    </div>
-</div>
+<!-- Include auth.js at the top -->
+<script src="auth.js"></script>
 
-<!-- Site content -->
 <header>
     <h1>Lunex Group Portal</h1>
 </header>
 
 <main>
-    <div class="card-container" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
-        <a href="file1.html" class="card" style="background:#1e1e1e; border:1px solid #333; padding:20px; width:200px; border-radius:8px; text-decoration:none; color:inherit;">
+    <div class="card-container">
+        <a href="file1.html" class="card">
             <h2>Bakalakala Info</h2>
             <p>Basic Info</p>
         </a>
-        <a href="file2.html" class="card" style="background:#1e1e1e; border:1px solid #333; padding:20px; width:200px; border-radius:8px; text-decoration:none; color:inherit;">
+        <a href="file2.html" class="card">
             <h2>Blobfish Info</h2>
             <p>Basic Info</p>
         </a>
-        <a href="file3.html" class="card" style="background:#1e1e1e; border:1px solid #333; padding:20px; width:200px; border-radius:8px; text-decoration:none; color:inherit;">
+        <a href="file3.html" class="card">
             <h2>Furk Info</h2>
             <p>Basic Info</p>
         </a>
@@ -89,29 +80,6 @@ header, main, footer {
 <footer>
     <p>&copy; 2025 Lunex Group</p>
 </footer>
-
-<script>
-const PASSWORD = "726f6f74"; // Change to your desired password
-
-function checkPassword() {
-    const input = document.getElementById("password-input").value;
-    const error = document.getElementById("error-message");
-
-    if (input === PASSWORD) {
-        // Hide login form
-        document.getElementById("login").style.display = "none";
-        // Show site content
-        document.querySelector("header").style.display = "block";
-        document.querySelector("main").style.display = "block";
-        document.querySelector("footer").style.display = "block";
-    } else {
-        // Show error message
-        error.textContent = "Incorrect password. Please try again.";
-        document.getElementById("password-input").value = "";
-        document.getElementById("password-input").focus();
-    }
-}
-</script>
 
 </body>
 </html>

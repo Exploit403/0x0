@@ -9,64 +9,77 @@
 body {
     background:#121212;
     color:#e0e0e0;
-    font-family:Arial,sans-serif;
+    font-family:Arial, sans-serif;
     margin:0;
 }
+
 header, main, footer {
-    display:none; /* Hide everything initially */
+    display:none; /* Hide site content until password is correct */
 }
-header {
-    background:#1e1e1e;
-    padding:20px;
-    text-align:center;
-    border-bottom:2px solid #00ff99;
-}
-h1 { color:#00ff99; margin:0; }
-main {
-    padding:40px;
+
+/* Login page styling */
+#login {
+    height:100vh;
     display:flex;
     justify-content:center;
+    align-items:center;
 }
-.card-container {
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
-.card {
+.login-box {
     background:#1e1e1e;
+    padding:30px;
+    border-radius:10px;
     border:1px solid #333;
-    padding:20px;
-    width:200px;
-    border-radius:8px;
-    text-decoration:none;
-    color:inherit;
-}
-.card:hover { border-color:#00ff99; }
-footer {
-    background:#1e1e1e;
     text-align:center;
+}
+.login-box input {
     padding:10px;
-    border-top:1px solid #333;
+    width:200px;
+    border-radius:5px;
+    border:none;
+}
+.login-box button {
+    margin-top:10px;
+    padding:10px;
+    width:100%;
+    background:#00ff99;
+    border:none;
+    cursor:pointer;
+}
+#error-message {
+    color:#ff5555;
+    margin-top:10px;
+    font-size:0.9em;
 }
 </style>
 </head>
 <body>
 
+<!-- Login form -->
+<div id="login">
+    <div class="login-box">
+        <h2>Lunex Group Portal Login</h2>
+        <input type="password" id="password-input" placeholder="Enter Password">
+        <button onclick="checkPassword()">Login</button>
+        <div id="error-message"></div>
+    </div>
+</div>
+
+<!-- Site content -->
 <header>
     <h1>Lunex Group Portal</h1>
 </header>
 
 <main>
-    <div class="card-container">
-        <a href="file1.html" class="card">
+    <div class="card-container" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+        <a href="file1.html" class="card" style="background:#1e1e1e; border:1px solid #333; padding:20px; width:200px; border-radius:8px; text-decoration:none; color:inherit;">
             <h2>Bakalakala Info</h2>
             <p>Basic Info</p>
         </a>
-        <a href="file2.html" class="card">
+        <a href="file2.html" class="card" style="background:#1e1e1e; border:1px solid #333; padding:20px; width:200px; border-radius:8px; text-decoration:none; color:inherit;">
             <h2>Blobfish Info</h2>
             <p>Basic Info</p>
         </a>
-        <a href="file3.html" class="card">
+        <a href="file3.html" class="card" style="background:#1e1e1e; border:1px solid #333; padding:20px; width:200px; border-radius:8px; text-decoration:none; color:inherit;">
             <h2>Furk Info</h2>
             <p>Basic Info</p>
         </a>
@@ -78,21 +91,25 @@ footer {
 </footer>
 
 <script>
-const PASSWORD = "726f6f74"; // Change this to your desired password
+const PASSWORD = "726f6f74"; // Change to your desired password
 
-// Prompt immediately for password
-let entered = prompt("Enter the site password:");
+function checkPassword() {
+    const input = document.getElementById("password-input").value;
+    const error = document.getElementById("error-message");
 
-// Check password
-if (entered === PASSWORD) {
-    // Show all content
-    document.querySelector("header").style.display = "block";
-    document.querySelector("main").style.display = "flex";
-    document.querySelector("footer").style.display = "block";
-} else {
-    // Wrong or cancelled → show access denied
-    document.body.innerHTML = "<h1 style='text-align:center;margin-top:50px;'>Access Denied</h1>";
-    throw new Error("Unauthorized");
+    if (input === PASSWORD) {
+        // Hide login form
+        document.getElementById("login").style.display = "none";
+        // Show site content
+        document.querySelector("header").style.display = "block";
+        document.querySelector("main").style.display = "block";
+        document.querySelector("footer").style.display = "block";
+    } else {
+        // Show error message
+        error.textContent = "Incorrect password. Please try again.";
+        document.getElementById("password-input").value = "";
+        document.getElementById("password-input").focus();
+    }
 }
 </script>
 

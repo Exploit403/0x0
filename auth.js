@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loginOverlay.innerHTML = `
         <div style="text-align:center; background:#1e1e1e; padding:30px; border-radius:10px; border:1px solid #333;">
-            <h2 style="color:#00ff99;">Lunex Group Portal Login</h2>
+            <h2 style="color:#00ff99;">0x0 Group Portal Login</h2>
             <input type="password" id="password-input" placeholder="Enter Password" 
                 style="padding:10px;width:200px;border-radius:5px;border:none;margin-top:10px;">
             <button id="login-btn" style="margin-top:10px;padding:10px;width:100%;background:#00ff99;border:none;cursor:pointer;">Login</button>
